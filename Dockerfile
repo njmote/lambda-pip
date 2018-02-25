@@ -14,6 +14,8 @@ WORKDIR /working
 
 ADD src/pip-and-zip.sh /bin/pip-and-zip.sh
 
+RUN dos2unix /bin/pip-and-zip.sh
+
 RUN chmod +x /bin/pip-and-zip.sh
 
 CMD . /bin/pip-and-zip.sh
