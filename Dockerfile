@@ -1,10 +1,30 @@
-FROM alpine:3.5
+FROM ubuntu
 
-RUN apk update
-RUN apk add py-pip
-RUN apk add zip
-RUN apk add ca-certificates
-RUN apk add dos2unix --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        curl \
+        dos2unix \
+        libfreetype6-dev \
+        libpng12-dev \
+        libzmq3-dev \
+        nano \
+        pkg-config \
+        python \
+        python-dev \
+        python3 \
+        python3-dev \
+        python3-pip \
+        rsync \
+        software-properties-common \
+        unzip \
+        zip \
+        && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py && \
+    rm get-pip.py
 
 RUN pip install --upgrade pip
 
